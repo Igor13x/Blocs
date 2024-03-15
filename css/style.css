@@ -11,11 +11,11 @@
   
   #logo{
     width: 30vw;
-    height: 10vh;
+    height: 10vw;
   }
   
   #logo img{
-    height: 8vh;
+    height: 10vh;
   }
   #display{
     width: 50vw;
@@ -65,4 +65,3 @@
     display:flex;
     gap:10px;
   }
-  
