@@ -8,6 +8,8 @@ let modalView = document.querySelector('#modal-view'); //Modal para exibição d
 let notes = document.querySelector('#notes');//Lista divs com dados das notas
 let btnSaveNote = document.querySelector("#btn-save-note"); //icone para salvar nota
 let btnCloseNote = document.querySelector("#btn-close-note");//icone para fechar modal de edição de nota.
+const edit = document.querySelector("#edit");
+const trash = document.querySelector("#trash");
 
 
 /*
@@ -31,6 +33,8 @@ btnCloseNote.addEventListener('click', (evt)=>{
     document.querySelector('#input-id').value='';
     document.querySelector('#input-title').value='';
     document.querySelector('#input-content').value='';
+    document.querySelector('#title-note').innerText='';
+    document.querySelector('#content-note').innerText='';
 
     listNotes();
 });
@@ -136,14 +140,35 @@ const showNote = (item) =>{
     notes.style.display = 'none';
     addnote.style.display = 'none';
     modalView.style.display = 'block';
+
     document.querySelector('#title-note').innerText = item.title;
     let pContent = document.createElement('p');
     pContent.innerText = item.content;
     document.querySelector('#content-note').appendChild(pContent);
 
     let pLastTime = document.createElement('p');
-    pLastTime.innerText ="Ultima edição: "+new Date (item.lastTime).toLocaleDateString('pt-BR');
+    pLastTime.innerText ="Última edição: "+new Date (item.lastTime).toLocaleDateString('pt-BR');
     document.querySelector('#content-note').appendChild(pLastTime);
+
+    edit.addEventListener("click",(evt)=>{
+        evt.preventDefault();
+
+        modal.style.display = "block";
+        modalView.style.display ="none";
+
+        let titlo = document.querySelector("#input-title");
+        titlo.value = item.title;
+        
+        let conteudo = document.querySelector("#input-content");
+        conteudo.value = item.content;
+
+        let id = document.querySelector("#input-id");
+        id.value = item.id;
+    
+    });
+    trash.addEventListener("click",(evt)=>{
+        evt.preventDefault();
+    });
 
 };
 
